@@ -35,3 +35,12 @@ npm start
 
 ## 🌏배포
 
+https://SJ-J.github.io/ReactStudy2
+
+### 배포 방법
+
+```bash
+npm run deploy
+```
+
+> 코드 수정 후 커밋 & 푸시 완료 후 위 명령어 실행하여 GitHub Pages에 반영
