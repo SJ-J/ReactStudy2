@@ -30,9 +30,9 @@ function App() {
       <div className='container'>
         <div className='row'>
           {
-            dogs.map(function(list, i) {
+            dogs.map(function(dogs, i) {
               return (
-                <Contents dogs={dogs} i={i} key={i}/>
+                <ListCard dogs={dogs} key={i}/>
               )
             })
           }
@@ -46,12 +46,13 @@ function App() {
 }
 
 /* 컴포넌트 영역 */
-function Contents(props) {
+function ListCard(props) {
   return (
     <div className='col-md-4'>
-      <img src={ props.dogs[props.i].img } className='cute-img' />
-      <h4> { props.dogs[props.i].name } </h4>
-      <p> { props.dogs[props.i].age }세</p>
+      <img src={ props.dogs.img } className='cute-img' />
+      <h4> { props.dogs.name } </h4>
+      <p> { props.dogs.age }세 </p>
+      <p> 전담 매니저 { props.dogs.manager } </p>
     </div>
   )
 }
