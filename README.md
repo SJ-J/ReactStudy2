@@ -1,11 +1,11 @@
-# 🛒React Shop Study
+# 🐶React Practice Study
 
 코딩애플 React 강좌 실습 프로젝트입니다. (Part 2)
 
 ## 📋실습 내용
 
 - React Bootstrap을 활용한 Navbar 구성
-- 이미지 import 및 그리드 레이아웃으로 상품(강아지) 목록 표시
+- 이미지 import 및 그리드 레이아웃으로 강아지 목록 표시
 - Bootstrap 반응형 그리드 시스템 (`col-md-4`) 적용
 
 ## 🔍주요 기능
@@ -13,7 +13,7 @@
 | 기능 | 설명 |
 |------|------|
 | 네비게이션 바 | React Bootstrap Navbar, 다크 테마 |
-| 강아지 목록 | 3열 그리드로 강아지 이미지·이름·나이 표시 |
+| 강아지 목록 | 3열 그리드로 이미지·이름·나이 표시 |
 
 ## 🧩컴포넌트 구조
 
