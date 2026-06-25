@@ -1,11 +1,17 @@
-import { Button, Container, Nav, Navbar, Row, Stack } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import './App.css';
-import bgImg from './img/mainbg.png'
 import dog_covy from './img/covy.jpg'
 import dog_bbomi from './img/bbomi.png'
 import dog_dal from './img/dal.png'
+import { useState } from 'react';
+
+import data from './data.js';
+// import 작명 from './data.js';
 
 function App() {
+  
+  let [dogs] = useState(data);
+
   return (
     <div className="App">
       <Navbar bg="dark" data-bs-theme="dark">
@@ -23,8 +29,8 @@ function App() {
         <div className='row'>
           <div className='col-md-4'>
             <img src={dog_covy} className='cute-img' />
-            <h4>임코비</h4>
-            <p>4세</p>
+            <h4> { dogs[0].name } </h4>
+            <p> { dogs[0].age }세</p>
           </div>
           <div className='col-md-4'>
             <img src={dog_bbomi} className='cute-img' />
@@ -43,7 +49,5 @@ function App() {
     </div>
   );
 }
-
-
 
 export default App;
