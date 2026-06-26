@@ -11,12 +11,14 @@
 - `Array.map()`을 활용한 동적 렌더링
 - 이미지 경로를 `public/img/`로 이동하여 `process.env.PUBLIC_URL` 적용
 - `react-router-dom`으로 SPA 라우팅 적용 (`/`, `/about`, `/detail`)
+- Navbar 링크를 `as={Link}`로 교체하여 SPA 내부 이동 처리
+- `BrowserRouter`에 `basename={process.env.PUBLIC_URL}` 설정으로 GitHub Pages 경로 대응
 
 ## 🔍주요 기능
 
 | 기능 | 설명 |
 |------|------|
-| 네비게이션 바 | React Bootstrap Navbar, 다크 테마, 라우터 링크 연결 |
+| 네비게이션 바 | React Bootstrap Navbar, 다크 테마, `as={Link}`로 SPA 내부 라우팅 |
 | 강아지 목록 | `map()`으로 동적 생성, 3열 그리드로 이미지·이름·나이·매니저 표시 |
 | 페이지 라우팅 | `/` 메인, `/about`, `/detail` 경로로 SPA 페이지 분기 |
 

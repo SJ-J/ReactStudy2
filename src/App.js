@@ -18,10 +18,10 @@ function App() {
       {/* 상단바 영역 */}
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="/" className='navBar'>견짱시대™</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/" className='navBar'>견짱시대™</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/about">About</Nav.Link>
             <Nav.Link href="#">뭐하지</Nav.Link>
           </Nav>
         </Container>
