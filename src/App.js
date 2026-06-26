@@ -4,9 +4,9 @@ import './App.css';
 // import dog_bbomi from './img/bbomi.png'
 // import dog_dal from './img/dal.png'
 import { useState } from 'react';
-
 import data from './data.js';
 // import 작명 from './data.js';
+import { Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   // 사용할 데이터
@@ -14,31 +14,47 @@ function App() {
 
   return (
     <div className="App">
+
       {/* 상단바 영역 */}
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home" className='navBar'>견짱시대™</Navbar.Brand>
+          <Navbar.Brand href="/" className='navBar'>견짱시대™</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link href="#">뭐하지</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
 
-      {/* 콘텐츠 영역 */}
-      <div className='container'>
-        <div className='row'>
-          {
-            dogs.map(function(dogs, i) {
-              return (
-                <ListCard dogs={dogs} key={i}/>
-              )
-            })
-          }
-        </div>
-      </div>
-
+      {/* 라우터 영역 */}
+      <Routes>
+        <Route path='/' element={ 
+          <div>
+            <div className='container'>
+              <div className='row'>
+                {
+                  dogs.map(function(dogs, i) {
+                    return (
+                      <ListCard dogs={dogs} key={i}/>
+                    )
+                  })
+                }
+              </div>
+            </div>
+          </div> 
+        } />
+        <Route path='/about' element={ 
+          <div>
+            <Link to="/"> Home </Link>
+          </div>
+           } />
+        <Route path='/detail' element={ 
+          <div>
+            <Link to="/"> Home </Link>
+          </div>
+           } />
+      </Routes>
       
 
     </div>
@@ -52,7 +68,7 @@ function ListCard(props) {
       <img src={ props.dogs.img } className='cute-img' />
       <h4> { props.dogs.name } </h4>
       <p> { props.dogs.age }세 </p>
-      <p> 전담 매니저 { props.dogs.manager } </p>
+      <p> 전담 매니저 <strong>{ props.dogs.manager }</strong> </p>
     </div>
   )
 }
