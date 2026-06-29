@@ -1,16 +1,15 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import './App.css';
-// import dog_covy from './img/covy.jpg'
-// import dog_bbomi from './img/bbomi.png'
-// import dog_dal from './img/dal.png'
 import { useState } from 'react';
 import data from './data.js';
-// import 작명 from './data.js';
-import { Routes, Route, Link } from 'react-router-dom';
+import Detail from './pages/Detail.jsx';
+import {Event1, Event2} from './pages/Event.jsx';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 function App() {
   // 사용할 데이터
   let [dogs] = useState(data);
+  let navigate = useNavigate();
 
   return (
     <div className="App">
@@ -20,9 +19,10 @@ function App() {
         <Container>
           <Navbar.Brand as={Link} to="/" className='navBar'>견짱시대™</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/about">About</Nav.Link>
-            <Nav.Link href="#">뭐하지</Nav.Link>
+            <Nav.Link onClick={ ()=>{ navigate('/') } }>Home</Nav.Link>
+            <Nav.Link onClick={ ()=>{ navigate('/about') } }>About</Nav.Link>
+            <Nav.Link onClick={ ()=>{ navigate('/event') } }>Event</Nav.Link>
+            {/* <Nav.Link onClick={ ()=>{ navigate(-1) } }>뒤로가기</Nav.Link> */}
           </Nav>
         </Container>
       </Navbar>
@@ -36,7 +36,9 @@ function App() {
                 {
                   dogs.map(function(dogs, i) {
                     return (
-                      <ListCard dogs={dogs} key={i}/>
+                      <ListCard dogs={dogs} key={i}>
+                        {/* <Route path='/detail/:id' element={ <Detail dogs={dogs} key={i} /> } /> */}
+                      </ListCard>
                     )
                   })
                 }
@@ -46,17 +48,21 @@ function App() {
         } />
         <Route path='/about' element={ 
           <div>
-            <Link to="/"> Home </Link>
+            <About/>
+            <button onClick={ ()=>{ navigate('/') } }>Home</button>
           </div>
-           } />
-        <Route path='/detail' element={ 
-          <div>
-            <Link to="/"> Home </Link>
-          </div>
-           } />
+           }>
+          <Route path='dogs' element={ <div> 견짱소개 </div> } />
+          <Route path='managers' element={ <div> 매니저소개 </div> } />
+        </Route>
+        <Route path='/event' element={ <Event /> }>
+           <Route path='event1' element={ <Event1 /> }></Route>
+           <Route path='event2' element={ <Event2 /> }></Route>
+        </Route>
+        <Route path='/detail/:id' element={ <Detail dogs={dogs} /> } />
+        <Route path='*' element={ <div>잘못 들어오셨어욤;;</div> } />
       </Routes>
       
-
     </div>
   );
 }
@@ -65,10 +71,28 @@ function App() {
 function ListCard(props) {
   return (
     <div className='col-md-4'>
-      <img src={ props.dogs.img } className='cute-img' />
+      <img src={ props.dogs.img } className='cute-img'/>
       <h4> { props.dogs.name } </h4>
       <p> { props.dogs.age }세 </p>
       <p> 전담 매니저 <strong>{ props.dogs.manager }</strong> </p>
+    </div>
+  )
+}
+
+function About() {
+  return (
+    <div>
+      <h4> About 견짱시대™… </h4>
+      <Outlet></Outlet>
+    </div>
+  )
+}
+
+function Event() {
+  return (
+    <div>
+      <h4> 견짱시대™ 이벤트 </h4>
+      <Outlet></Outlet>
     </div>
   )
 }

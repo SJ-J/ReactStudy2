@@ -10,24 +10,39 @@
 - 외부 데이터 파일(`data.js`) 분리 및 `useState` 상태 관리
 - `Array.map()`을 활용한 동적 렌더링
 - 이미지 경로를 `public/img/`로 이동하여 `process.env.PUBLIC_URL` 적용
-- `react-router-dom`으로 SPA 라우팅 적용 (`/`, `/about`, `/detail`)
+- `react-router-dom`으로 SPA 라우팅 적용 (`/`, `/about`, `/event`, `/detail/:id`)
 - Navbar 링크를 `as={Link}`로 교체하여 SPA 내부 이동 처리
 - `BrowserRouter`에 `basename={process.env.PUBLIC_URL}` 설정으로 GitHub Pages 경로 대응
+- `useNavigate` 훅으로 Navbar 메뉴 클릭 시 프로그래밍 방식 이동 처리
+- 중첩 라우트(`<Route>` 안에 `<Route>`) + `<Outlet>`으로 서브 페이지 렌더링
+- `/about/dogs`, `/about/managers` 서브 라우트 구성
+- `/event/event1`, `/event/event2` 서브 라우트 구성
+- `/detail/:id`로 URL 파라미터 적용, `useParams`로 id 추출해 상세 페이지 구현
+- `path='*'`로 404 처리
+- 페이지 컴포넌트를 `src/pages/` 디렉토리로 분리
 
 ## 🔍주요 기능
 
 | 기능 | 설명 |
 |------|------|
-| 네비게이션 바 | React Bootstrap Navbar, 다크 테마, `as={Link}`로 SPA 내부 라우팅 |
+| 네비게이션 바 | React Bootstrap Navbar, 다크 테마, `useNavigate`로 프로그래밍 이동 |
 | 강아지 목록 | `map()`으로 동적 생성, 3열 그리드로 이미지·이름·나이·매니저 표시 |
-| 페이지 라우팅 | `/` 메인, `/about`, `/detail` 경로로 SPA 페이지 분기 |
+| 페이지 라우팅 | `/` 메인, `/about`, `/event`, `/detail/:id` SPA 분기 |
+| 중첩 라우트 | About·Event 하위에 서브 라우트, `<Outlet>`으로 렌더링 |
+| 상세 페이지 | URL 파라미터(`:id`) + `useParams`로 선택 강아지 정보 표시 |
+| 404 처리 | `path='*'`로 잘못된 경로 안내 |
 
 ## 🧩컴포넌트 구조
 
-| 컴포넌트 | 설명 |
-|---------|------|
-| `App` | 메인 컴포넌트, Navbar + 강아지 목록 렌더링 |
-| `ListCard` | 강아지 카드 단위 컴포넌트 (이미지·이름·나이·매니저) |
+| 컴포넌트 | 파일 | 설명 |
+|---------|------|------|
+| `App` | `App.js` | 메인 컴포넌트, Navbar + Routes 구성 |
+| `ListCard` | `App.js` | 강아지 카드 단위 컴포넌트 (이미지·이름·나이·매니저) |
+| `About` | `App.js` | About 페이지, `<Outlet>`으로 서브 라우트 렌더링 |
+| `Event` | `App.js` | Event 페이지, `<Outlet>`으로 서브 라우트 렌더링 |
+| `Detail` | `pages/Detail.jsx` | 강아지 상세 페이지, `useParams`로 id 기반 데이터 표시 |
+| `Event1` | `pages/Event.jsx` | 이벤트1 서브 컴포넌트 |
+| `Event2` | `pages/Event.jsx` | 이벤트2 서브 컴포넌트 |
 
 ## ⚙️기술 스택
 
