@@ -36,9 +36,7 @@ function App() {
                 {
                   dogs.map(function(dogs, i) {
                     return (
-                      <ListCard dogs={dogs} key={i}>
-                        {/* <Route path='/detail/:id' element={ <Detail dogs={dogs} key={i} /> } /> */}
-                      </ListCard>
+                      <ListCard dogs={dogs} key={dogs.id} />
                     )
                   })
                 }
@@ -69,9 +67,10 @@ function App() {
 
 /* 컴포넌트 영역 */
 function ListCard(props) {
+  let navigate = useNavigate();
   return (
     <div className='col-md-4'>
-      <img src={ props.dogs.img } className='cute-img'/>
+      <img src={ props.dogs.img } className='cute-img' onClick={ ()=>{ navigate(`/detail/${ props.dogs.id }`) } } />
       <h4> { props.dogs.name } </h4>
       <p> { props.dogs.age }세 </p>
       <p> 전담 매니저 <strong>{ props.dogs.manager }</strong> </p>
