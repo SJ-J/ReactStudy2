@@ -1,4 +1,13 @@
 import { useParams } from "react-router-dom";
+// import styled from "styled-components";
+
+// let YellowBtn = styled.button`
+//     background: ${ props => props.bg };     // 값도 뚫어서 쓸 수 있음
+//     color: ${ props => props.bg == 'green' ? 'white' : 'black' };
+//     padding: 10px
+// `
+// 스타일 복사 가능
+// let NewBtn = styled.button(YellowBtn)
 
 function Detail(props) {
 
@@ -8,6 +17,8 @@ function Detail(props) {
 
     return (
             <div className="container">
+            {/* <YellowBtn bg='skyblue'>벝은</YellowBtn>
+            <YellowBtn bg='green'>벝은</YellowBtn> */}
             <div className="row">
                 <div className="col-md-6">
                 <img src={ dog.img } className='cute-img' />
