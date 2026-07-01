@@ -8,7 +8,7 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 function App() {
   // 사용할 데이터
-  let [dogs] = useState(data);
+  let [players] = useState(data);
   let navigate = useNavigate();
 
   return (
@@ -17,7 +17,7 @@ function App() {
       {/* 상단바 영역 */}
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand as={Link} to="/" className='navBar'>견짱시대™</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/" className='navBar'>KIA야옹이즈™</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link onClick={ ()=>{ navigate('/') } }>Home</Nav.Link>
             <Nav.Link onClick={ ()=>{ navigate('/about') } }>About</Nav.Link>
@@ -34,9 +34,9 @@ function App() {
             <div className='container'>
               <div className='row'>
                 {
-                  dogs.map(function(dogs, i) {
+                  players.map(function(players, i) {
                     return (
-                      <ListCard dogs={dogs} key={dogs.id} />
+                      <ListCard players={players} key={players.id} />
                     )
                   })
                 }
@@ -50,14 +50,13 @@ function App() {
             <button onClick={ ()=>{ navigate('/') } }>Home</button>
           </div>
            }>
-          <Route path='dogs' element={ <div> 견짱소개 </div> } />
-          <Route path='managers' element={ <div> 매니저소개 </div> } />
+          <Route path='players' element={ <div> 선수소개 </div> } />
         </Route>
         <Route path='/event' element={ <Event /> }>
            <Route path='event1' element={ <Event1 /> }></Route>
            <Route path='event2' element={ <Event2 /> }></Route>
         </Route>
-        <Route path='/detail/:id' element={ <Detail dogs={dogs} /> } />
+        <Route path='/detail/:id' element={ <Detail players={players} /> } />
         <Route path='*' element={ <div>잘못 들어오셨어욤;;</div> } />
       </Routes>
       
@@ -70,10 +69,10 @@ function ListCard(props) {
   let navigate = useNavigate();
   return (
     <div className='col-md-4'>
-      <img src={ props.dogs.img } className='cute-img' onClick={ ()=>{ navigate(`/detail/${ props.dogs.id }`) } } />
-      <h4> { props.dogs.name } </h4>
-      <p> { props.dogs.age }세 </p>
-      <p> 전담 매니저 <strong>{ props.dogs.manager }</strong> </p>
+      <img src={ props.players.img } className='img' onClick={ ()=>{ navigate(`/detail/${ props.players.id }`) } } />
+      <h4> { props.players.name } </h4>
+      <p> No.{ props.players.no } </p>
+      <p> <strong>{ props.players.position }</strong> </p>
     </div>
   )
 }
@@ -81,7 +80,7 @@ function ListCard(props) {
 function About() {
   return (
     <div>
-      <h4> About 견짱시대™… </h4>
+      <h4> About 야옹이즈™… </h4>
       <Outlet></Outlet>
     </div>
   )
@@ -90,7 +89,7 @@ function About() {
 function Event() {
   return (
     <div>
-      <h4> 견짱시대™ 이벤트 </h4>
+      <h4> 야옹이즈™ 이벤트 </h4>
       <Outlet></Outlet>
     </div>
   )

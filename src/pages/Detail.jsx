@@ -1,35 +1,47 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import styled from "styled-components";
-
-// let YellowBtn = styled.button`
-//     background: ${ props => props.bg };     // 값도 뚫어서 쓸 수 있음
-//     color: ${ props => props.bg == 'green' ? 'white' : 'black' };
-//     padding: 10px
-// `
-// 스타일 복사 가능
-// let NewBtn = styled.button(YellowBtn)
 
 function Detail(props) {
 
+    useEffect( ()=>{
+        let timer = setTimeout(() => { setViewBox(false); }, 2000);
+
+        return ()=>{
+            clearTimeout(timer);
+        }
+    }, [])
+
+    let [count, setCount] = useState(0);
+    let [viewBox, setViewBox] = useState(true);
+
     let {id} = useParams();
     // id가 일치하는 항목을 find()로 찾음
-    let dog = props.dogs.find(dog => dog.id == id)
+    let player = props.players.find(player => player.id == id)
 
     return (
             <div className="container">
-            {/* <YellowBtn bg='skyblue'>벝은</YellowBtn>
-            <YellowBtn bg='green'>벝은</YellowBtn> */}
+            { viewBox == true ? <Box /> : null }
+            { count }
+            <button onClick={()=>{ setCount(count + 1) }}>공 주기</button>
             <div className="row">
                 <div className="col-md-6">
-                <img src={ dog.img } className='cute-img' />
+                <img src={ player.img } className='cute-img' />
                 </div>
                 <div className="col-md-6">
-                <h4 className="pt-5"> { dog.name } </h4>
-                <p> { dog.age }세 </p>
-                <p> 전담 매니저 <strong>{ dog.manager }</strong> </p>
+                <h4 className="pt-5"> { player.name } </h4>
+                <p> No.{ player.no } </p>
+                <p> <strong>{ player.position }</strong> </p>
                 </div>
             </div>
             </div>
+    )
+}
+
+function Box() {
+    return (
+        <div className="alert alert-warning">
+            2초 이내 투구 시 창억떡 할인
+        </div>
     )
 }
 
