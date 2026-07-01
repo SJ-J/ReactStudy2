@@ -1,4 +1,4 @@
-# 🐱React Practice Study
+# 🐯React Practice Study
 
 코딩애플 React 강좌 실습 프로젝트입니다. (Part 2)
 
