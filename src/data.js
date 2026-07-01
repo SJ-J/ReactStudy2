@@ -61,6 +61,13 @@ let data = [
     no : 65,
     position : "투수",
     img : "https://tigers.co.kr/files/playerImg/tigersImg/2026_65_A.png"
+  },
+  {
+    id : 9,
+    name : "박재현",
+    no : 15,
+    position : "외야수",
+    img : "https://tigers.co.kr/files/playerImg/tigersImg/2026_15_A.png"
   }
 ]
 
