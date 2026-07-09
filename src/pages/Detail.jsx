@@ -80,15 +80,19 @@ function Box(props) {
 }
 
 function TabContent({tabs}) {
-    if (tabs === 0) {
-        return <div>내용0</div>
-    }
-    if (tabs === 1) {
-        return <div>내용1</div>
-    }
-    if (tabs === 2) {
-        return <div>내용2</div>
-    }
+
+    let [fade, setFade] = useState('')
+
+    useEffect(()=>{
+        setTimeout(() => { setFade('end') }, 10);
+        return ()=>{
+            setFade('')
+        }
+    }, [tabs])
+
+    return (<div className={'start ' + fade}>
+        {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tabs]}
+    </div>)
 }
 
 export default Detail;

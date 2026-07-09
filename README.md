@@ -32,6 +32,7 @@
 - `isCalled` 상태로 중복 요청 방지, 요청 완료 후 버튼 조건부 렌더링
 - 상세 페이지가 없는 `id`로 접근할 경우 안내 문구를 표시하도록 방어 코드 추가 (훅 호출 순서 유지)
 - `Nav.Link` 클릭 시 `setTabs`로 상태를 변경해 `TabContent`가 실제로 탭 내용을 전환하도록 연결
+- 탭 전환 시 `opacity` 트랜지션(`.start`/`.end`)으로 페이드인 효과 적용
 
 ## 🔍주요 기능
 
@@ -56,7 +57,7 @@
 | `Event` | `App.js` | Event 페이지, `<Outlet>`으로 서브 라우트 렌더링 |
 | `Detail` | `pages/Detail.jsx` | 선수 상세 페이지, `useEffect`·카운터·연봉 입력 포함, 없는 id 접근 시 안내 문구 렌더 |
 | `Box` | `pages/Detail.jsx` | 카운터·버튼 포함 안내 박스, `count`·`setCount`를 props로 전달받음, 2초 후 자동 숨김 |
-| `TabContent` | `pages/Detail.jsx` | 선택된 탭(`tabs`)에 따라 내용0/1/2 렌더 |
+| `TabContent` | `pages/Detail.jsx` | 선택된 탭(`tabs`)에 따라 내용0/1/2 렌더, 탭 변경 시 페이드인 트랜지션 적용 |
 | `Event1` | `pages/Event.jsx` | 이벤트1 서브 컴포넌트 |
 | `Event2` | `pages/Event.jsx` | 이벤트2 서브 컴포넌트 |
 
