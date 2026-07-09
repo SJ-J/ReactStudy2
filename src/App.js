@@ -1,14 +1,17 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import './App.css';
 import { useState } from 'react';
-import data from './data.js';
+import defaultData from './defaultData.js';
 import Detail from './pages/Detail.jsx';
 import {Event1, Event2} from './pages/Event.jsx';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import axios from 'axios';
 
 function App() {
   // 사용할 데이터
-  let [players] = useState(data);
+  let [players, setPlayers] = useState(defaultData);
+  let [data, setData] = useState([]);
+  let [isCalled, setIsCalled] = useState(false);
   let navigate = useNavigate();
 
   return (
@@ -42,7 +45,8 @@ function App() {
                 }
               </div>
             </div>
-          </div> 
+            { isCalled === false ? <MoreBtn players={players} setPlayers={setPlayers} setData={setData} setIsCalled={setIsCalled} /> : null }
+          </div>
         } />
         <Route path='/about' element={ 
           <div>
@@ -74,6 +78,23 @@ function ListCard(props) {
       <p> No.{ props.players.no } </p>
       <p> <strong>{ props.players.position }</strong> </p>
     </div>
+  )
+}
+
+function MoreBtn(props) {
+  return (
+      <button onClick={()=>{
+        axios.get('https://sj-j.github.io/ReactStudy2/data.json')
+        .then((response)=>{
+          props.setData(response.data);
+          let copy = [...props.players];
+          props.setPlayers( [...copy, ...response.data] )
+          props.setIsCalled(true)
+        }).catch(()=>{
+          console.log('ajax 요청 실패');
+        })
+        console.log(props.players.length)
+      }}> 선수 더보기 </button>
   )
 }
 
