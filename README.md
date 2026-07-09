@@ -7,7 +7,7 @@
 - React Bootstrap을 활용한 Navbar 구성
 - 이미지 그리드 레이아웃으로 선수 목록 표시
 - Bootstrap 반응형 그리드 시스템 (`col-md-4`) 적용
-- 외부 데이터 파일(`data.js`) 분리 및 `useState` 상태 관리
+- 외부 데이터 파일(`defaultData.js`) 분리 및 `useState` 상태 관리
 - `Array.map()`을 활용한 동적 렌더링
 - 이미지 경로를 `public/img/`로 이동하여 `process.env.PUBLIC_URL` 적용
 - `react-router-dom`으로 SPA 라우팅 적용 (`/`, `/about`, `/event`, `/detail/:id`)
@@ -28,6 +28,8 @@
   - `price` 상태 변화 감지 후 숫자 외 입력 시 `alert`로 유효성 검사
 - 카운터 상태(`count`, `setCount`)를 자식 컴포넌트(`Box`)에 props로 전달하는 패턴 적용
 - 연봉 입력 필드 추가 (숫자만 허용, 실시간 유효성 검사)
+- `axios`로 외부 JSON(`data.json`) 데이터를 요청해 선수 목록에 병합하는 "선수 더보기" 기능 추가
+- `isCalled` 상태로 중복 요청 방지, 요청 완료 후 버튼 조건부 렌더링
 
 ## 🔍주요 기능
 
@@ -39,6 +41,7 @@
 | 중첩 라우트 | About·Event 하위에 서브 라우트, `<Outlet>`으로 렌더링 |
 | 상세 페이지 | `find()`로 선수 데이터 검색, 카운터·연봉 입력·타이머 박스 포함 |
 | 404 처리 | `path='*'`로 잘못된 경로 안내 |
+| 선수 더보기 | `axios.get()`으로 외부 JSON 요청 후 선수 목록에 병합, `isCalled`로 중복 호출 방지 |
 
 ## 🧩컴포넌트 구조
 
@@ -46,6 +49,7 @@
 |---------|------|------|
 | `App` | `App.js` | 메인 컴포넌트, Navbar + Routes 구성 |
 | `ListCard` | `App.js` | 선수 카드 단위 컴포넌트, 이미지 클릭 시 상세 페이지로 이동 |
+| `MoreBtn` | `App.js` | "선수 더보기" 버튼, `axios`로 데이터 요청 후 `players`에 병합 |
 | `About` | `App.js` | About 페이지, `<Outlet>`으로 서브 라우트 렌더링 |
 | `Event` | `App.js` | Event 페이지, `<Outlet>`으로 서브 라우트 렌더링 |
 | `Detail` | `pages/Detail.jsx` | 선수 상세 페이지, `useEffect`·카운터·연봉 입력 포함 |
@@ -60,6 +64,7 @@
 - React Bootstrap 2
 - Bootstrap 5
 - React Router DOM 6
+- Axios
 - JavaScript (JSX)
 
 ## 🚀실행 방법
