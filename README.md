@@ -30,6 +30,8 @@
 - 연봉 입력 필드 추가 (숫자만 허용, 실시간 유효성 검사)
 - `axios`로 외부 JSON(`data.json`) 데이터를 요청해 선수 목록에 병합하는 "선수 더보기" 기능 추가
 - `isCalled` 상태로 중복 요청 방지, 요청 완료 후 버튼 조건부 렌더링
+- 상세 페이지가 없는 `id`로 접근할 경우 안내 문구를 표시하도록 방어 코드 추가 (훅 호출 순서 유지)
+- `Nav.Link` 클릭 시 `setTabs`로 상태를 변경해 `TabContent`가 실제로 탭 내용을 전환하도록 연결
 
 ## 🔍주요 기능
 
@@ -39,7 +41,7 @@
 | 선수 목록 | `map()`으로 동적 생성, 3열 그리드로 이미지·이름·번호·포지션 표시 |
 | 페이지 라우팅 | `/` 메인, `/about`, `/event`, `/detail/:id` SPA 분기 |
 | 중첩 라우트 | About·Event 하위에 서브 라우트, `<Outlet>`으로 렌더링 |
-| 상세 페이지 | `find()`로 선수 데이터 검색, 카운터·연봉 입력·타이머 박스 포함 |
+| 상세 페이지 | `find()`로 선수 데이터 검색, 카운터·연봉 입력·타이머 박스·탭 전환 포함, 없는 id 접근 시 안내 문구 표시 |
 | 404 처리 | `path='*'`로 잘못된 경로 안내 |
 | 선수 더보기 | `axios.get()`으로 외부 JSON 요청 후 선수 목록에 병합, `isCalled`로 중복 호출 방지 |
 
@@ -52,8 +54,9 @@
 | `MoreBtn` | `App.js` | "선수 더보기" 버튼, `axios`로 데이터 요청 후 `players`에 병합 |
 | `About` | `App.js` | About 페이지, `<Outlet>`으로 서브 라우트 렌더링 |
 | `Event` | `App.js` | Event 페이지, `<Outlet>`으로 서브 라우트 렌더링 |
-| `Detail` | `pages/Detail.jsx` | 선수 상세 페이지, `useEffect`·카운터·연봉 입력 포함 |
+| `Detail` | `pages/Detail.jsx` | 선수 상세 페이지, `useEffect`·카운터·연봉 입력 포함, 없는 id 접근 시 안내 문구 렌더 |
 | `Box` | `pages/Detail.jsx` | 카운터·버튼 포함 안내 박스, `count`·`setCount`를 props로 전달받음, 2초 후 자동 숨김 |
+| `TabContent` | `pages/Detail.jsx` | 선택된 탭(`tabs`)에 따라 내용0/1/2 렌더 |
 | `Event1` | `pages/Event.jsx` | 이벤트1 서브 컴포넌트 |
 | `Event2` | `pages/Event.jsx` | 이벤트2 서브 컴포넌트 |
 
