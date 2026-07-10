@@ -88,4 +88,4 @@ https://SJ-J.github.io/ReactStudy2
 npm run deploy
 ```
 
-> 코드 수정 후 커밋 & 푸시 완료 후 위 명령어 실행하여 GitHub Pages에 반영
+> 커밋 & 푸시 완료 후 위 명령어 실행하여 GitHub Pages에 반영
