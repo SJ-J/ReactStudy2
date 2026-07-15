@@ -1,11 +1,13 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import './App.css';
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import defaultData from './defaultData.js';
 import Detail from './pages/Detail.jsx';
 import {Event1, Event2} from './pages/Event.jsx';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
+
+export let Context1 = createContext();
 
 function App() {
   // 사용할 데이터
@@ -13,6 +15,7 @@ function App() {
   let [data, setData] = useState([]);
   let [isCalled, setIsCalled] = useState(false);
   let navigate = useNavigate();
+  let [remanet] = useState([2, 3, 4]);
 
   return (
     <div className="App">
@@ -60,7 +63,11 @@ function App() {
            <Route path='event1' element={ <Event1 /> }></Route>
            <Route path='event2' element={ <Event2 /> }></Route>
         </Route>
-        <Route path='/detail/:id' element={ <Detail players={players} /> } />
+        <Route path='/detail/:id' element={ 
+          <Context1.Provider value={{ players, remanet }}>
+            <Detail players={players} />
+          </Context1.Provider>
+        } />
         <Route path='*' element={ <div>잘못 들어오셨어욤;;</div> } />
       </Routes>
       

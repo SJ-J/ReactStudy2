@@ -1,9 +1,12 @@
 import { tab } from "@testing-library/user-event/dist/tab";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import {Context1} from './../App.js';
 
 function Detail(props) {
+
+    let {players, remanet} = useContext(Context1);
     
     let [count, setCount] = useState(0);
     let [viewBox, setViewBox] = useState(true);
@@ -62,7 +65,7 @@ function Detail(props) {
                 <Nav.Link onClick={()=>{setTabs(2)}} eventKey="link2">버튼2</Nav.Link>
                 </Nav.Item>
             </Nav>
-            <TabContent tabs={tabs} />
+            <TabContent tabs={tabs} remanet={remanet[player.id]} />
         </div>
         </div>
     )
@@ -81,7 +84,11 @@ function Box(props) {
 
 function TabContent({tabs}) {
 
+    let {players, remanet} = useContext(Context1);
     let [fade, setFade] = useState('')
+    let {id} = useParams();
+    // id가 일치하는 항목을 find()로 찾음
+    let player = players.find(player => player.id == id)
 
     useEffect(()=>{
         setTimeout(() => { setFade('end') }, 10);
@@ -91,7 +98,7 @@ function TabContent({tabs}) {
     }, [tabs])
 
     return (<div className={'start ' + fade}>
-        {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tabs]}
+        {[<div>계약기간 { remanet[player.id] }년 남음</div>, <div>내용1</div>, <div>내용2</div>][tabs]}
     </div>)
 }
 
