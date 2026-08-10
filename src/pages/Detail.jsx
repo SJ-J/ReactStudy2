@@ -98,7 +98,7 @@ function TabContent({tabs}) {
     }, [tabs])
 
     return (<div className={'start ' + fade}>
-        {[<div>계약기간 { remanet[player.id] }년 남음</div>, <div>내용1</div>, <div>내용2</div>][tabs]}
+        {[<div>계약 기간 { remanet[player.id] }년 남음</div>, <div>내용1</div>, <div>내용2</div>][tabs]}
     </div>)
 }
 

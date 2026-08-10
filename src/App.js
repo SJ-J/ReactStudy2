@@ -3,6 +3,7 @@ import './App.css';
 import { createContext, useState } from 'react';
 import defaultData from './defaultData.js';
 import Detail from './pages/Detail.jsx';
+import Contract from './pages/Contract.jsx';
 import {Event1, Event2} from './pages/Event.jsx';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
@@ -69,6 +70,7 @@ function App() {
           </Context1.Provider>
         } />
         <Route path='*' element={ <div>잘못 들어오셨어욤;;</div> } />
+        <Route path='/contract' element={<Contract />}></Route>
       </Routes>
       
     </div>
