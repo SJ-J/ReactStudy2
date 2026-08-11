@@ -14,14 +14,13 @@ function Contract() {
             <h3>잡아야 한다</h3>
             <h5>누가? { state.user.name }가… </h5>
             <button onClick={()=>{ dispatch( changeName() ) }}>🐯</button>
-            <button onClick={()=>{ dispatch( addV(10) ) }}>🥇🥉</button>
+            <button onClick={()=>{ dispatch( addV(1) ) }}>🥇🥉</button>
             <Table>
                 <thead>
                     <tr>
                     <th>No.</th>
                     <th>선수명</th>
                     <th>포지션</th>
-                    <th>FA</th>
                     <th>연봉</th>
                     <th>계약기간</th>
                     </tr>
@@ -34,8 +33,7 @@ function Contract() {
                                     <td>{ player.id }</td>
                                     <td>{ player.name }</td>
                                     <td>{ player.position }</td>
-                                    <td>{ player.fa }</td>
-                                    <td>{ player.salary } 원</td>
+                                    <td>{ player.salary } 만 원</td>
                                     <td>{ player.years } 년 
                                         <button onClick={()=>{
                                             dispatch( addYears(player.id) )

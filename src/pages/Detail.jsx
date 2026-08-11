@@ -1,10 +1,15 @@
 import { tab } from "@testing-library/user-event/dist/tab";
 import { useContext, useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import {Context1} from './../App.js';
+import { addContract } from "../store";
+import { useDispatch } from "react-redux";
 
 function Detail(props) {
+
+    let dispatch = useDispatch();
+    let navigate = useNavigate();
 
     let {players, remanet} = useContext(Context1);
     
@@ -49,10 +54,18 @@ function Detail(props) {
             <h4 className="pt-5"> { player.name } </h4>
             <p> No.{ player.no } </p>
             <p> <strong>{ player.position }</strong> </p>
-            <p>연봉 <strong>{ price == '' ? 0 : price }</strong>만 원</p>
-            <input placeholder="지불할 금액을 적어주세요." onChange={ (e)=>setPrice(e.target.value) }></input>
+            <p>제안 연봉 <strong>{ price == '' ? 0 : price }</strong> 만 원</p>
+            <input placeholder="제안할 연봉을 적어주세요." onChange={ (e)=>setPrice(e.target.value) }></input>
             </div>
-            <p><button> 계약하기 </button></p>
+            <p><button onClick={()=>{ 
+                if (price <= 0) {
+                    alert('금액을 입력해 주세요.');
+                    return;
+                }
+                dispatch(addContract( {...player, price: price} ));
+                alert( player.name + ' 선수에게 성공적으로 제안을 보냈습니다. \n 제시 금액: ' + price + ' 만 원');
+                navigate('/contract');
+                 }}> 제안하기 </button></p>
         </div>
         <div>
             <Nav variant="tabs"  defaultActiveKey="link0">
