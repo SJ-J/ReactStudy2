@@ -52,6 +52,7 @@ function Detail(props) {
             <p>연봉 <strong>{ price == '' ? 0 : price }</strong>만 원</p>
             <input placeholder="지불할 금액을 적어주세요." onChange={ (e)=>setPrice(e.target.value) }></input>
             </div>
+            <p><button> 계약하기 </button></p>
         </div>
         <div>
             <Nav variant="tabs"  defaultActiveKey="link0">
