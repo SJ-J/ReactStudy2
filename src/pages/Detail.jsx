@@ -63,7 +63,7 @@ function Detail(props) {
                     return;
                 }
                 dispatch(addContract( {...player, price: price} ));
-                alert( player.name + ' 선수에게 성공적으로 제안을 보냈습니다. \n 제시 금액: ' + price + ' 만 원');
+                alert( player.name + '(' + player.no + ') 선수에게 성공적으로 제안을 보냈습니다. \n 제시 금액: ' + price + ' 만 원');
                 navigate('/contract');
                  }}> 제안하기 </button></p>
         </div>

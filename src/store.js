@@ -4,8 +4,8 @@ import user from './store/userSlice.js'
 let wishlist = createSlice({
     name: 'wishlist',
     initialState: [
-        {id: 3, name: '김호령', position: '외야수', salary: 0, years: 0},
-        {id: 5, name: '김태군', position: '포수', salary: 0, years: 0}
+        {id: 3, no: 27, name: '김호령', position: '외야수', salary: 0, years: 0},
+        {id: 5, no: 42, name: '김태군', position: '포수', salary: 0, years: 0}
     ],
     reducers: {
         addYears(state, action) {
@@ -17,8 +17,8 @@ let wishlist = createSlice({
             }
         },
         addContract(state, action) {
-            let { id, name, position, price } = action.payload;
-            let player = {id: id, name: name, position: position, salary: price, years: 0}
+            let { id, no, name, position, price } = action.payload;
+            let player = {id: id, no: no, name: name, position: position, salary: price, years: 0}
             state.push(player);
             console.log(action.payload);
         }

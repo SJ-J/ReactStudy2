@@ -30,7 +30,7 @@ function Contract() {
                         state.wishlist.map(function(player, i) {
                             return (
                                 <tr key={i}>
-                                    <td>{ player.id }</td>
+                                    <td>{ player.no }</td>
                                     <td>{ player.name }</td>
                                     <td>{ player.position }</td>
                                     <td>{ player.salary } 만 원</td>
